@@ -19,19 +19,17 @@ exp1_boolean_min.v	Verilog design file
 exp1_boolean_min_tb.v	Verilog testbench
 exp1_boolean_min.vcd	VCD waveform dump generated during simulation
 
-1. Verilog Design File
+## Verilog Design File
     //gedit exp1_boolean_min. v
-   ```
-   module boolean(
+   ```verilog
+    module boolean(
     input A,
     input B,
     input C,
     input D,
     output F
 );
-
     assign F = (~B & ~D) | (B & D);
-
 endmodule
 ```
 2. Testbench
@@ -180,8 +178,8 @@ F(A,B,C,D)=Σm(0,2,5,7,8,10,13,15), which simplifies to F=B'D'+BD.
 was minimized to F=B'D'+BD.
 and successfully implemented using Verilog HDL.
 
-
-<img width="940" height="476" alt="image" src="https://github.com/user-attachments/assets/ae3b1554-b603-4184-b259-55e9f4a698d2" />
+### OUTPUT
+<img width="959" height="486" alt="IMG1" src="https://github.com/user-attachments/assets/1ecece4f-8174-44ab-9af4-110ebb08dfa9" />
 
 
 The design was compiled and simulated using Synopsys VCS, and the functionality was verified using DVE waveform analysis.
