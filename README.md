@@ -180,10 +180,10 @@ F(A,B,C,D)=Σm(0,2,5,7,8,10,13,15), which simplifies to F=B'D'+BD.
 was minimized to F=B'D'+BD.
 and successfully implemented using Verilog HDL.
 
-<img width="940" height="476" alt="image" src="https://github.com/user-attachments/assets/2b5a0c81-04f4-44f1-b5e8-8532a37930f6" />
+
+<img width="940" height="476" alt="image" src="https://github.com/user-attachments/assets/ae3b1554-b603-4184-b259-55e9f4a698d2" />
 
 
- 
 The design was compiled and simulated using Synopsys VCS, and the functionality was verified using DVE waveform analysis.
 7. Viva-Voce Questions
 1.	What is Boolean function minimization?
