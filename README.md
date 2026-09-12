@@ -20,116 +20,48 @@ exp1_boolean_min_tb.v	Verilog testbench
 exp1_boolean_min.vcd	VCD waveform dump generated during simulation
 
 ## Verilog Design File
-    //gedit exp1_boolean_min. v
-   ```verilog
-    module boolean(
-    input A,
-    input B,
-    input C,
-    input D,
-    output F
-);
-    assign F = (~B & ~D) | (B & D);
+       //gedit fun.v
+module fun (
+input wire A, 
+input wire B, 
+output wire F 
+); 
+
+assign F = (~A) | B ;    // F = A' + B 
+
 endmodule
-```
-2. Testbench
+## Testbench
 // gedit tb.v
-```
 module tb;
-
-    reg A;
-    reg B;
-    reg C;
-    reg D;
-
+    reg A, B;
     wire F;
-
-    exp1_boolean_min dut (
+    // Instantiate the design under test (DUT)
+    fun uut (
         .A(A),
         .B(B),
-        .C(C),
-        .D(D),
         .F(F)
     );
 
     initial begin
+        // ---- VCD dump setup ----
+        $dumpfile("fun.vcd");   // name of the VCD file to be generated
+        $dumpvars(0, tb);   // dump all signals in this testbench hierarchy
 
-        $dumpfile("exp1_boolean_min.vcd");
-        $dumpvars(0, tb);
+        // ---- Apply all 4 input combinations ----
+        $monitor("Time=%0t A=%b B=%b | F=%b", $time, A, B, F);
 
-        A=0; B=0; C=0; D=0; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
+        A = 0; B = 0; #10;
+        A = 0; B = 1; #10;
+        A = 1; B = 0; #10;
+        A = 1; B = 1; #10;
 
-        A=0; B=0; C=0; D=1; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=0; B=0; C=1; D=0; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=0; B=0; C=1; D=1; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=0; B=1; C=0; D=0; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=0; B=1; C=0; D=1; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=0; B=1; C=1; D=0; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=0; B=1; C=1; D=1; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=1; B=0; C=0; D=0; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=1; B=0; C=0; D=1; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=1; B=0; C=1; D=0; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=1; B=0; C=1; D=1; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=1; B=1; C=0; D=0; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=1; B=1; C=0; D=1; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=1; B=1; C=1; D=0; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        A=1; B=1; C=1; D=1; #10;
-        $display("A=%b B=%b C=%b D=%b F=%b",A,B,C,D,F);
-
-        $finish;
-
+        #10 $finish;
     end
 
 endmodule
-```
-
-### Truth Table
-A	B	C	D	F
-0	0	0	0	1
-0	0	0	1	0
-0	0	1	0	1
-0	0	1	1	0
-0	1	0	0	0
-0	1	0	1	1
-0	1	1	0	0
-0	1	1	1	1
-1	0	0	0	1
-1	0	0	1	0
-1	0	1	0	1
-1	0	1	1	0
-1	1	0	0	0
-1	1	0	1	1
-1	1	1	0	0
-1	1	1	1	1
+## Truth Table
+ 
+<img width="795" height="311" alt="image" src="https://github.com/user-attachments/assets/dd4ba5b9-016b-4ae5-a693-f309c60c4c0e" />
 
 ## Simulation Procedure
 STEP 1 – Open Terminal
@@ -179,7 +111,8 @@ was minimized to F=B'D'+BD.
 and successfully implemented using Verilog HDL.
 
 ### OUTPUT
-<img width="959" height="486" alt="IMG1" src="https://github.com/user-attachments/assets/1ecece4f-8174-44ab-9af4-110ebb08dfa9" />
+<img width="1196" height="385" alt="exp 1" src="https://github.com/user-attachments/assets/713f604d-e087-4f24-8dd5-5ca8c42b742c" />
+
 
 
 The design was compiled and simulated using Synopsys VCS, and the functionality was verified using DVE waveform analysis.
