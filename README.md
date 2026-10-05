@@ -19,7 +19,7 @@ exp1_boolean_min.v	Verilog design file
 exp1_boolean_min_tb.v	Verilog testbench
 exp1_boolean_min.vcd	VCD waveform dump generated during simulation
 
-## Verilog Design File
+## Verilog Program
 
 
 
